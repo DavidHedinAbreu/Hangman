@@ -48,35 +48,8 @@ public class Play implements ActionListener {
 	// ALL STUDENT CODE IN ACTIONPERFORMED METHOD BELOW.
 	public void actionPerformed(ActionEvent event) {
 		guess = getGuess();
-		if(showWord.contains("-") == false || stage >= 7) {
-			if(guess.equals("Y")) 
-				provision();
-			else if(guess.equals("N")) 
-				System.exit(0);
-		} else {
-			guessed += guess;
-			resetGuessed(guessed);
-			if(word.indexOf(guess) >= 0) {
-				while(word.indexOf(guess) >= 0) {
-					int index = word.indexOf(guess);
-					showWord = showWord.substring(0, index) + word.substring(index, index + 1) + showWord.substring(index + 1);
-					word = word.substring(0, index) + "-" + word.substring(index + 1);
-				}
-				resetWord(showWord);
-			}
-			else {
-				stage++;
-				resetMan(stage);
-			}
-			if(showWord.contains("-") == false) {
-				winner();
-				prompt();
-			}
-			if(stage >= 7) {
-				loser();
-				prompt();
-			}
-		}
+		// Your code here...
+		
 	}
 	
 	// DO NOT CHANGE THE METHODS BELOW.
@@ -102,9 +75,9 @@ public class Play implements ActionListener {
 		return result;
 	}
 	
-	// Update guessed-letters field to the list of letters in String "guessed".
-	public void resetGuessed(String guessed) {
-		gf.getGuessedLabel().setText(guessed);
+	// Update message field, used for guessed letters and play-again prompt.
+	public void resetMessage(String message) {
+		gf.getMessageLabel().setText(message);
 	}
 	
 	// Update word shown to user with String showWord.  Hyphen characters are represented as blank squares.
@@ -229,10 +202,10 @@ public class Play implements ActionListener {
 		resetWord(guessThis);
 	}
 	
-	// Uses the guessedLetters field to message the user that they need to choose   
+	// Uses the message field to message the user that they need to choose   
 	// whether to play again.
 	public void prompt() {
-		resetGuessed("(Play again? Type Y or N.)");  
+		resetMessage("(Play again? Type Y or N.)");  
 	}
 	
 	// When play begins, sets all the data (the "Model") to starting values, gets a new word, and
@@ -250,7 +223,7 @@ public class Play implements ActionListener {
 		}
 		
 		setWord(showWord);		
-		resetGuessed(guessed);
+		resetMessage("Guessed: " + guessed);
 		
 		System.out.println(word);  // For cheaters.
 

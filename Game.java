@@ -6,6 +6,6 @@ public class Game {
 	
 	// Execute this method to start the game.
 	public static void main(String[] args) {
-		GameFrame gf = new GameFrame();  // Sets up the GUI (the "View").  
+		GameFrame gf = new GameFrame();  // Sets up the GUI (the "View"), which instantiates Play ActionListener.  
    }
 }
